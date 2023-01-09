@@ -29,6 +29,10 @@ def get_highlights(email, password):
     driver.get('https://read.amazon.com/kp/notebook')
     print(driver.title)
 
+    elemmm = WebDriverWait(driver, 45).until(
+    EC.presence_of_element_located((By.ID, "ap_email"))
+    )
+
     email_input = driver.find_element(By.XPATH, '//*[@id="ap_email"]')
     pass_input = driver.find_element(By.XPATH, '//*[@id="ap_password"]')
     email_input.send_keys(email)
@@ -70,13 +74,13 @@ def get_highlights(email, password):
 
         # wait for page to load
         elem = WebDriverWait(driver, 45).until(
-        EC.presence_of_element_located((By.XPATH, "//span[contains(@id, 'highlight')]")) 
+        EC.presence_of_element_located((By.XPATH, "//span[contains(@id, 'highlight')]"))
         )
 
         highlights = []
         highlight_text = []
         highlights = driver.find_elements(
-            By.XPATH, 
+            By.XPATH,
             "//span[@id='highlight' or @id='note']"
         )
 
