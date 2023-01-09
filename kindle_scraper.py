@@ -28,18 +28,8 @@ def get_highlights(email, password):
     print("getting driver---------------")
     driver.get('https://read.amazon.com/kp/notebook')
     print(driver.title)
-    print("waiting for the ap_email input to be present...")
-    try:
-        element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "authportal-main-section"))
-        )
-    finally:
-        driver.quit()
-    print("Element printed: ")
-    print(elemmm)
-
-    email_input = driver.find_element(By.XPATH, '//*[@id="ap_email"]')
-    pass_input = driver.find_element(By.XPATH, '//*[@id="ap_password"]')
+    email_input = driver.find_element("id", "ap_email")
+    pass_input = driver.find_element("id", "ap_password")
     email_input.send_keys(email)
     pass_input.send_keys(password)
 
