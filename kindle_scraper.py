@@ -38,10 +38,12 @@ def get_highlights(email, password):
 
     print("logging in...")
 
-    # wait for page to load
-    elem = WebDriverWait(driver, 45).until(
-    EC.presence_of_element_located((By.ID, "library-section"))
-    )
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'IdOfMyElement')))
+        print("Page is ready!")
+    except TimeoutException:
+        print("Loading took too much time!")
 
     print("logged in")
 
